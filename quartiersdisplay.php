@@ -37,6 +37,17 @@ if (wp_get_theme() != "Quartiersplattform") {
 	return;
 }
 
+// QP Add Menu Button
+add_action( 'qp_menu_button', 'display_page', 10, 3 );
+function display_page() {
+	?>
+		<a class="button header-button" href="<?php echo get_site_url()."/quartiersdisplay" ?>">
+			Displays
+			<!-- <?php include_once( plugin_dir_path( __FILE__ ) . '/includes/assets/icons/ampelmann.svg'); ?> -->
+		</a>
+	<?php
+}
+
 // create page call Quartiersdisplay
 add_action('init', function() {
 	$slug = "quartiersdisplay";
