@@ -79,20 +79,12 @@ $args4 = array(
     'suppress_filters' => true
 );
 
-# Display veranstaltung posts with template
-$posts = get_posts($args1);
-$REMAINING_POSTS = $NUM_POSTS - count($posts);
-if ($REMAINING_POSTS > 0) {
-    $posts = array_merge($posts, get_posts($args2));
-    $REMAINING_POSTS = $NUM_POSTS - count($posts);
-    if ($REMAINING_POSTS > 0) {
-        $posts = array_merge($posts, get_posts($args3));
-        $REMAINING_POSTS = $NUM_POSTS - count($posts);
-        if ($REMAINING_POSTS > 0) {
-            $posts = array_merge($posts, get_posts($args4));
-        }
-    }
-}
+# Merge Posts
+$posts = array_merge(get_posts($args1), get_posts($args2), get_posts($args3), get_posts($args4));
+# Remove from posts to fit limit NUM_POSTS
+$posts = array_slice($posts, 0, $NUM_POSTS);
+# Randomly distribute posts in array
+shuffle($posts);
 
 # clean array
 $content = array();
