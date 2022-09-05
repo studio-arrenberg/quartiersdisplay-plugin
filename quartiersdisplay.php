@@ -41,10 +41,9 @@ if (wp_get_theme() != "Quartiersplattform") {
 add_action( 'qp_menu_button', 'display_page', 10, 3 );
 function display_page() {
 	?>
-		<a class="button header-button" href="<?php echo get_site_url()."/quartiersdisplay" ?>">
-			Displays
-			<!-- <?php include_once( plugin_dir_path( __FILE__ ) . '/includes/assets/icons/ampelmann.svg'); ?> -->
-		</a>
+		<!-- <a class="button header-button" href="<?php echo get_site_url()."/quartiersdisplay" ?>">
+			<?php include_once( plugin_dir_path( __FILE__ ) . '/includes/assets/icons/ampelmann.svg'); ?>
+		</a> -->
 	<?php
 }
 

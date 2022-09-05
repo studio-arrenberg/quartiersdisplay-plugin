@@ -6,16 +6,10 @@ header('Access-Control-Allow-Origin: http://localhost:3000'); // for local devel
 // header('Access-Control-Allow-Origin: *'); // for local development
 
 /**
- * meta
+ * todo
  * ---
- * # slide duration
- * # anzahl posts
  * - hard pinned posts (admin, duration) => nachrichten, veranstaltungen, umfragen
- * # veranstaltung date time!
- * # umfragen!
- * # meta => name der quartiersplattform
  */
-
 
 # Define
 # Amount of posts to display
