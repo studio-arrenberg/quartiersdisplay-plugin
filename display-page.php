@@ -92,7 +92,6 @@ $easy_query = array(
 # Display Easy
 card_list($easy_query);  // Using QP Card List Funktion
 
-
 get_footer();
 
 ?>

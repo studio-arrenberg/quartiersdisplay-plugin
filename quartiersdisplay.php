@@ -121,4 +121,85 @@ add_filter('template_include', function($template) {
 	return $template;
 });
 
+# Add ACF Settingpage
+add_action('init', function() {
+	if( function_exists('acf_add_options_page') ) {
+		acf_add_options_page(array(
+			'page_title' 	=> 'Quartiersdisplays',
+			'menu_title'	=> 'Quartiersdisplays',
+			'menu_slug' 	=> 'quartiersdisplays',
+			// 'parent_slug'	=> 'theme-general-settings', // creates error
+			'capability'	=> 'edit_posts',
+			'redirect'		=> false,
+			'update_button' => __('Aktualisieren', 'acf'),
+			'updated_message' => __("Die Einstellungen wurden gespeichert.", 'acf'),
+			'icon_url' => 'dashicons-desktop',
+		));
+	}
+});
+# Add fields
+add_action('init', function() {
+	if( function_exists('acf_add_local_field_group') ):
+
+		acf_add_local_field_group(array(
+			'key' => 'group_6023ea77ebqs53',
+			'title' => __('Quartiersdisplays Einstellungen',"quartiersplattform"),
+			'fields' => array(
+				array(
+					'key' => 'field_6023ea77ebqs54',
+					'label' => __('Anzahl der Slides',"quartiersplattform"),
+					'name' => 'quartiersdisplays_slides',
+					'type' => 'number',
+					'instructions' => __('Anzahl der Slides, die angezeigt werden sollen.',"quartiersplattform"),
+					'required' => 0,
+					'default_value' => 10,
+					'placeholder' => 10,
+					'prepend' => '',
+					'append' => '',
+					'min' => 3,
+					'max' => 20,
+					'step' => 1,
+				),
+				array(
+					'key' => 'field_6024ebe66b6425',
+					'label' => __('Slide-Dauer',"quartiersdisplays"),
+					'name' => 'quartiersdisplays_slide_duration',
+					'type' => 'number',
+					'instructions' => __('Hier kannst du die Dauer der Slides festlegen (in Sekunden).',"quartiersplattform"),
+					'required' => 0,
+					'conditional_logic' => 0,
+					'wrapper' => array(
+						'width' => '',
+						'class' => '',
+						'id' => '',
+					),
+					'default_value' => 8,
+					'placeholder' => __('Dauer der Slides in Sekunden',"quartiersplattform"),
+					'prepend' => '',
+					'append' => '',
+					'maxlength' => 2,
+				),
+			),
+			'location' => array(
+				array(
+					array(
+						'param' => 'options_page',
+						'operator' => '==',
+						'value' => 'quartiersdisplays',
+					),
+				),
+			),
+			'menu_order' => 0,
+			'position' => 'normal',
+			'style' => 'default',
+			'label_placement' => 'top',
+			'instruction_placement' => 'label',
+			'hide_on_screen' => '',
+			'active' => true,
+			'description' => '',
+			)
+		);
+	endif;
+});
+
 ?>
