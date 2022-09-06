@@ -3,13 +3,6 @@
 # Set Header
 header('Content-Type: application/json; charset=utf-8');
 header('Access-Control-Allow-Origin: http://localhost:3000'); // for local development
-// header('Access-Control-Allow-Origin: *'); // for local development
-
-/**
- * todo
- * ---
- * - hard pinned posts (admin, duration) => nachrichten, veranstaltungen, umfragen
- */
 
 # Define
 # Amount of posts to display
@@ -47,7 +40,8 @@ $args1 = array(
     'orderby' => array(
         'date_clause' => 'ASC',
         'time_clause' => 'ASC',
-    )
+    ),
+    'posts_per_page' => $NUM_POSTS * 0.5,
 );
 # Query 10 nachrichten chronologically
 $args2 = array(
@@ -56,7 +50,8 @@ $args2 = array(
     'order' => 'DESC',
     'post_type' => 'nachrichten',
     'post_status' => 'publish',
-    'suppress_filters' => true
+    'suppress_filters' => true,
+    'posts_per_page' => $NUM_POSTS * 0.5,
 );
 # Query 10 umfragen chronologically not older than 1 week
 $args3 = array(
@@ -68,7 +63,8 @@ $args3 = array(
     'suppress_filters' => true,
     'date_query' => array(
         'after' => date('Y-m-d', strtotime('-10 days')) 
-    )
+    ),
+    'posts_per_page' => $NUM_POSTS,
 );
 # Query random projekte
 $args4 = array(
@@ -76,7 +72,8 @@ $args4 = array(
     'orderby' => 'rand',
     'post_type' => 'projekte',
     'post_status' => 'publish',
-    'suppress_filters' => true
+    'suppress_filters' => true,
+    'posts_per_page' => $NUM_POSTS,
 );
 
 # Merge Posts
