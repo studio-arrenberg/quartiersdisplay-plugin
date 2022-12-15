@@ -110,7 +110,7 @@ foreach ($posts as $post) {
         'author' => get_the_author_meta('display_name', $post->post_author),
 
         // return projekt name
-        'project' => $post->post_type == 'projekte' ? get_the_title($post->ID) : get_the_title(get_post_meta($post->ID)['projekt'][0]),
+        'project' => $post->post_type == 'projekte' ? get_the_title($post->ID) : get_the_title(get_the_terms($post->ID, 'projekt')[0]->description),
 
         // veranstaltungen
         'event_date' => get_field('event_date', $post->ID),
@@ -120,14 +120,21 @@ foreach ($posts as $post) {
         // text
         'text' => get_post_meta($post->ID)['text'][0],
 
-        // projekte
-        'emoji' => get_post_meta($post->ID)['emoji'][0],
+        // emoji
+        'emoji' => $post->post_type == 'projekte' ? get_post_meta($post->ID)['emoji'][0] : get_post_meta(get_the_terms($post->ID, 'projekt')[0]->description)['emoji'][0],
 
         // umfragen
-        'poll' => getPollData($post->ID)
+        'poll' => getPollData($post->ID),
 
         // meta field
         // 'meta' => get_post_meta($post->ID) 
+
+        // get taxonomies
+        // 'taxonomies' => get_the_terms($post->ID, 'projekt')[0],
+
+        // term list
+        // 'term_list' => wp_get_post_terms( $post->ID, 'projekt', array( 'fields' => 'all' ) ),
+
     );
 }
 
