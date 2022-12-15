@@ -22,7 +22,6 @@ $meta = array(
 $args1 = array(
     'post_type'=>'veranstaltungen', 
     'post_status'=>'publish', 
-    'posts_per_page'=> $NUM_POSTS,
     'offset' => '0', 
     'meta_query' => array(
         'relation' => 'AND',
@@ -45,17 +44,18 @@ $args1 = array(
 );
 # Query 10 nachrichten chronologically
 $args2 = array(
-    'posts_per_page' => $NUM_POSTS,
     'orderby' => 'date',
     'order' => 'DESC',
     'post_type' => 'nachrichten',
     'post_status' => 'publish',
     'suppress_filters' => true,
     'posts_per_page' => $NUM_POSTS * 0.5,
+    'date_query' => array(
+        'after' => date('Y-m-d', strtotime('-2 months')) 
+    ),
 );
 # Query 10 umfragen chronologically not older than 1 week
 $args3 = array(
-    'posts_per_page' => $NUM_POSTS,
     'orderby' => 'date',
     'order' => 'DESC',
     'post_type' => 'umfragen',
@@ -68,16 +68,29 @@ $args3 = array(
 );
 # Query random projekte
 $args4 = array(
-    'posts_per_page' => $NUM_POSTS,
     'orderby' => 'rand',
     'post_type' => 'projekte',
     'post_status' => 'publish',
     'suppress_filters' => true,
-    'posts_per_page' => $NUM_POSTS,
+    'posts_per_page' => $NUM_POSTS > 2 ? $NUM_POSTS : 2,    
 );
+# Get latest projekte
+$args5 = array(
+    'orderby' => 'date',
+    'order' => 'DESC',
+    'post_type' => 'projekte',
+    'post_status' => 'publish',
+    'suppress_filters' => true,
+    'posts_per_page' => 1,
+);
+# check if $args5 is already in $args4
+if (in_array($args5, $args4)) {
+    $args5 = array();
+}
+
 
 # Merge Posts
-$posts = array_merge(get_posts($args1), get_posts($args2), get_posts($args3), get_posts($args4));
+$posts = array_merge(get_posts($args1), get_posts($args2), get_posts($args3), get_posts($args4), get_posts($args5));
 # Remove from posts to fit limit NUM_POSTS
 $posts = array_slice($posts, 0, $NUM_POSTS);
 # Randomly distribute posts in array
@@ -95,6 +108,9 @@ foreach ($posts as $post) {
         'image' => get_the_post_thumbnail_url($post->ID, 'medium'),
         'type' => $post->post_type,
         'author' => get_the_author_meta('display_name', $post->post_author),
+
+        // return projekt name
+        'project' => $post->post_type == 'projekte' ? get_the_title($post->ID) : get_the_title(get_post_meta($post->ID)['projekt'][0]),
 
         // veranstaltungen
         'event_date' => get_field('event_date', $post->ID),
