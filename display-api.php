@@ -88,13 +88,57 @@ if (in_array($args5, $args4)) {
     $args5 = array();
 }
 
+# Additional Posts
+$additional_post = array();
+# Energie Ampel
+# Add Energie Ampel information to additional_post
+
+# Get data from http://api.energiewetter.de/
+$energie_wetter = file_get_contents('http://api.energiewetter.de/');
+$energie_wetter = json_decode($energie_wetter, true);
+# get the next phase from forecast which is not the current phase
+$next_phase = null;
+# iterate through forecast
+foreach ($energie_wetter['forecast'] as $key => $item) {
+    if ($item['color'] != $energie_wetter['current']['color'] && $next_phase == null) {
+        // $next_phase = $key;
+        // $next_phase = $item;
+        $next_phase = "Ab ".date('H:i', strtotime($key))." Uhr ist ".$item['label']['plural']." Phase";
+    }
+}
+
+# write to array
+$additional_post[] = array(
+    'id' => 'energie_wetter',
+    'title' => 'Energie Wetter für Wuppertal',
+    'subtitle' => 'Phase',
+    'content' => 'Aktueller Emissionsfaktor '.$energie_wetter['current']['emissions']['amount'].' gramm CO2 pro kWh',
+    'type' => 'energie_wetter',
+    'text' => $next_phase,
+);
+# Promote Quartiersplattform with Name and Link
+$additional_post[] = array(
+    'id' => 'quartiersplattform',
+    'title' => get_field('quartiersplattform-name', 'option'),
+    'subtitle' => home_url(),
+    'content' => 'Hier geht es zur Quartiersplattform',
+    'type' => 'info',
+    'text' => 'Hier geht es zur Quartiersplattform',
+);
+# Promote Aufbruch am Arrenberg
+get_field('quartiersdisplays_office', 'option', false) && 
+$additional_post[] = array(
+    'id' => 'office',
+    'title' => get_field('quartiersdisplays_office_title', 'option'),
+    'subtitle' => get_field('quartiersdisplays_office_subtitle', 'option'),
+    'type' => 'info',
+    'text' => get_field('quartiersdisplays_office_text', 'option'),
+);
 
 # Merge Posts
 $posts = array_merge(get_posts($args1), get_posts($args2), get_posts($args3), get_posts($args4), get_posts($args5));
 # Remove from posts to fit limit NUM_POSTS
 $posts = array_slice($posts, 0, $NUM_POSTS);
-# Randomly distribute posts in array
-shuffle($posts);
 
 # clean array
 $content = array();
@@ -162,7 +206,13 @@ function getPollData($id) {
     return $formatted;
 }
 
+# Combine posts and additional_post
+$all_content = array_merge($content, $additional_post);
+# Randomly distribute posts in array
+shuffle($all_content);
+
+
 # Return posts
-echo json_encode(array('meta' => $meta, 'content' => $content));
+echo json_encode(array('meta' => $meta, 'content' => $all_content));
 
 ?>

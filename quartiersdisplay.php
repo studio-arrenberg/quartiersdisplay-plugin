@@ -198,6 +198,83 @@ add_action('init', function() {
 			'description' => '',
 			)
 		);
+
+		acf_add_local_field_group(array(
+			'key' => 'group_6023ea77ebqs63',
+			'title' => __('Quartiersbüro Seite',"quartiersplattform"),
+			'fields' => array(
+				# add a on / off switch for visibility
+				array(
+					'key' => 'field_6023ea77ebqs64',
+					'label' => __('Quartiersbüro anzeigen',"quartiersplattform"),
+					'name' => 'quartiersdisplays_office',
+					'type' => 'true_false',
+					'instructions' => __('Soll das Quartiersbüro angezeigt werden?',"quartiersplattform"),
+					'required' => 0,
+					'default_value' => 1,
+					'ui' => 1,
+					'ui_on_text' => __('Anzeigen',"quartiersplattform"),
+					'ui_off_text' => __('Ausblenden',"quartiersplattform"),
+				),
+				array(
+					'key' => 'field_6028ea77ebqs55',
+					'label' => __('Überschrift',"quartiersplattform"),
+					'name' => 'quartiersdisplays_office_title',
+					'type' => 'text',
+					'instructions' => __('Name des Büros',"quartiersplattform"),
+					'required' => 0,
+					'default_value' => 'Quartiersbüro',
+					'placeholder' => 'Quartiersbüro',
+					'prepend' => '',
+					'append' => '',
+					'max' => 32,
+				),
+				array(
+					'key' => 'field_6028ea77ebqs525',
+					'label' => __('Unterschrift',"quartiersplattform"),
+					'name' => 'quartiersdisplays_office_subtitle',
+					'type' => 'text',
+					'instructions' => __('Zweite Überschrift',"quartiersplattform"),
+					'required' => 0,
+					'default_value' => 'Ein Ort für alle',
+					'placeholder' => 'Ein Ort für alle',
+					'prepend' => '',
+					'append' => '',
+					'max' => 64,
+				),
+				array(
+					'key' => 'field_6028ea44ebqs525',
+					'label' => __('Text',"quartiersplattform"),
+					'name' => 'quartiersdisplays_office_text',
+					'type' => 'text',
+					'instructions' => __('Text',"quartiersplattform"),
+					'required' => 0,
+					'default_value' => 'Ipsum Lorem...',
+					'placeholder' => 'Ipsum Lorem...',
+					'prepend' => '',
+					'append' => '',
+				)
+			),
+			'location' => array(
+				array(
+					array(
+						'param' => 'options_page',
+						'operator' => '==',
+						'value' => 'quartiersdisplays',
+					),
+				),
+			),
+			'menu_order' => 0,
+			'position' => 'normal',
+			'style' => 'default',
+			'label_placement' => 'top',
+			'instruction_placement' => 'label',
+			'hide_on_screen' => '',
+			'active' => true,
+			'description' => '',
+			)
+		);
+
 	endif;
 });
 
