@@ -149,7 +149,7 @@ foreach ($posts as $post) {
         'subtitle' => get_post_meta($post->ID)['slogan'][0],
         'content' => $post->post_content,
         'date' => $post->post_date,
-        'image' => get_the_post_thumbnail_url($post->ID, 'medium'),
+        'image' => get_the_post_thumbnail_url($post->ID),
         'type' => $post->post_type,
         'author' => get_the_author_meta('display_name', $post->post_author),
 
