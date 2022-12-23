@@ -106,7 +106,6 @@ foreach ($energie_wetter['forecast'] as $key => $item) {
         $next_phase = "Ab ".date('H:i', strtotime($key))." Uhr ist ".$item['label']['plural']." Phase";
     }
 }
-
 # write to array
 $additional_post[] = array(
     'id' => 'energie_wetter',
@@ -116,6 +115,14 @@ $additional_post[] = array(
     'type' => 'energie_wetter',
     'text' => $next_phase,
 );
+# Get Image from settings quartiersdisplays_office_image
+$image_office = get_field('quartiersdisplays_office_image', 'option');
+if (empty( $image_office )) {
+    $image_office = get_template_directory_uri()."/assets/images/quartier.png";
+}
+else {
+    $image_office = $image_office['url'];
+}
 # Promote Quartiersplattform with Name and Link
 $additional_post[] = array(
     'id' => 'quartiersplattform',
@@ -124,7 +131,16 @@ $additional_post[] = array(
     'content' => 'Hier geht es zur Quartiersplattform',
     'type' => 'info',
     'text' => 'Hier geht es zur Quartiersplattform',
+    'image' => esc_url($image_office),
 );
+# Get Main Image QP
+$image_qp = get_field('quartier_image', 'option');
+if (empty( $image_qp )) {
+    $image_qp = get_template_directory_uri()."/assets/images/quartier.png";
+}
+else {
+    $image_qp = $image_qp['url'];
+}
 # Promote Aufbruch am Arrenberg
 get_field('quartiersdisplays_office', 'option', false) && 
 $additional_post[] = array(
@@ -133,6 +149,7 @@ $additional_post[] = array(
     'subtitle' => get_field('quartiersdisplays_office_subtitle', 'option'),
     'type' => 'info',
     'text' => get_field('quartiersdisplays_office_text', 'option'),
+    'image' => esc_url($image_qp),
 );
 
 # Merge Posts

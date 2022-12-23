@@ -1,14 +1,14 @@
 <?php
 /**
  * @package Quartiersdisplays
- * @version 0.0.1
+ * @version 0.0.2
  */
 /*
 Plugin Name: Quartiersdisplays
 Plugin URI: https://github.com/studio-arrenberg/quartiersplattform
 Description: Dieses Plugin stellt die Schnittstelle zu den Quartiersdisplays.
 Author: studio arrenberg
-Version: 0.0.1
+Version: 0.0.2
 Author URI: https://arrenberg.studio
 */
 
@@ -211,10 +211,29 @@ add_action('init', function() {
 					'type' => 'true_false',
 					'instructions' => __('Soll das Quartiersbüro angezeigt werden?',"quartiersplattform"),
 					'required' => 0,
-					'default_value' => 1,
+					'default_value' => 0,
 					'ui' => 1,
 					'ui_on_text' => __('Anzeigen',"quartiersplattform"),
 					'ui_off_text' => __('Ausblenden',"quartiersplattform"),
+				),
+				# Image quartiersdisplays_office_image
+				array(
+					'key' => 'field_6023ea77ebqs65',
+					'label' => __('Bild',"quartiersplattform"),
+					'name' => 'quartiersdisplays_office_image',
+					'type' => 'image',
+					'instructions' => __('Bild des Quartiersbüros',"quartiersplattform"),
+					'required' => 0,
+					'return_format' => 'array',
+					'preview_size' => 'thumbnail',
+					'library' => 'all',
+					'min_width' => 0,
+					'min_height' => 0,
+					'min_size' => 0,
+					'max_width' => 0,
+					'max_height' => 0,
+					'max_size' => 0,
+					'mime_types' => '',
 				),
 				array(
 					'key' => 'field_6028ea77ebqs55',
