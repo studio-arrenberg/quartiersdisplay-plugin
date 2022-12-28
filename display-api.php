@@ -88,6 +88,11 @@ if (in_array($args5, $args4)) {
     $args5 = array();
 }
 
+# Funktion to remove seconds from time
+function remove_seconds($time) {
+    return substr($time, 0, -3);
+}
+
 # Additional Posts
 $additional_post = array();
 # Energie Ampel
@@ -97,13 +102,12 @@ $additional_post = array();
 $energie_wetter = file_get_contents('http://api.energiewetter.de/');
 $energie_wetter = json_decode($energie_wetter, true);
 # get the next phase from forecast which is not the current phase
-$next_phase = null;
+$next_phase_text = null;
 # iterate through forecast
 foreach ($energie_wetter['forecast'] as $key => $item) {
     if ($item['color'] != $energie_wetter['current']['color'] && $next_phase == null) {
-        // $next_phase = $key;
-        // $next_phase = $item;
-        $next_phase = "Ab ".date('H:i', strtotime($key))." Uhr ist ".$item['label']['plural']." Phase";
+        $next_phase_text = "Ab ".date('H:i', strtotime($key))." Uhr ist ".$item['label']['plural']." Phase";
+        $next_phase_object = $item;
     }
 }
 # write to array
@@ -111,9 +115,10 @@ $additional_post[] = array(
     'id' => 'energie_wetter',
     'title' => 'Energie Wetter für Wuppertal',
     'subtitle' => $energie_wetter['current']['color'],
-    'content' => 'Aktueller Emissionsfaktor '.$energie_wetter['current']['emissions']['amount'].' gramm CO2 pro kWh',
+    'content' => $energie_wetter['current'],
     'type' => 'energie_wetter',
-    'text' => $next_phase,
+    'text' => $next_phase_text,
+
 );
 # Get Image from settings quartiersdisplays_office_image
 $image_office = get_field('quartiersdisplays_office_image', 'option');
@@ -124,23 +129,17 @@ else {
     $image_office = $image_office['url'];
 }
 # Promote Quartiersplattform with Name and Link
+$link = home_url();
+$link = str_replace('https://', '', $link);
+$link = str_replace('http://', '', $link);
+get_field('qp_display_state', 'option', false) &&
 $additional_post[] = array(
     'id' => 'quartiersplattform',
-    'title' => get_field('quartiersplattform-name', 'option'),
-    'subtitle' => home_url(),
-    'content' => 'Hier geht es zur Quartiersplattform',
+    'title' => get_field('qp_display_title', 'option') ? get_field('qp_display_title', 'option') : get_field('quartiersplattform-name', 'option'),
+    'subtitle' => get_field('qp_display_subtitle', 'option'),
+    'link' => $link,
     'type' => 'info',
-    'text' => 'Hier geht es zur Quartiersplattform',
-    'image' => esc_url($image_office),
 );
-# Get Main Image QP
-$image_qp = get_field('quartier_image', 'option');
-if (empty( $image_qp )) {
-    $image_qp = get_template_directory_uri()."/assets/images/quartier.png";
-}
-else {
-    $image_qp = $image_qp['url'];
-}
 # Promote Aufbruch am Arrenberg
 get_field('quartiersdisplays_office', 'option', false) && 
 $additional_post[] = array(
@@ -148,8 +147,8 @@ $additional_post[] = array(
     'title' => get_field('quartiersdisplays_office_title', 'option'),
     'subtitle' => get_field('quartiersdisplays_office_subtitle', 'option'),
     'type' => 'info',
-    'text' => get_field('quartiersdisplays_office_text', 'option'),
-    'image' => esc_url($image_qp),
+    // 'text' => get_field('quartiersdisplays_office_text', 'option'),
+    'image' => esc_url($image_office),
 );
 
 # Merge Posts
@@ -175,8 +174,8 @@ foreach ($posts as $post) {
 
         // veranstaltungen
         'event_date' => get_field('event_date', $post->ID),
-        'event_time' => get_field('event_time', $post->ID),
-        'event_end_time' => get_field('event_end_time', $post->ID),
+        'event_time' => remove_seconds(get_field('event_time', $post->ID)),
+        'event_end_time' => remove_seconds(get_field('event_end_time', $post->ID)),
 
         // text
         'text' => get_post_meta($post->ID)['text'][0],
