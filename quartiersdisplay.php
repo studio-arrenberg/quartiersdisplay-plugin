@@ -1,14 +1,14 @@
 <?php
 /**
  * @package Quartiersdisplays
- * @version 0.0.2
+ * @version 0.0.3
  */
 /*
 Plugin Name: Quartiersdisplays
 Plugin URI: https://github.com/studio-arrenberg/quartiersplattform
 Description: Dieses Plugin stellt die Schnittstelle zu den Quartiersdisplays.
 Author: studio arrenberg
-Version: 0.0.2
+Version: 0.0.3
 Author URI: https://arrenberg.studio
 */
 
@@ -74,6 +74,40 @@ add_action('init', function() {
 add_filter('template_include', function($template) {
 	if (is_page('quartiersdisplay')) {
 		$new_template = plugin_dir_path(__FILE__) . 'display-page.php';
+		if ('' != $new_template) {
+			return $new_template ;
+		}
+	}
+	return $template;
+});
+
+// create page ./display
+add_action('init', function() {
+	$slug = "display";
+	$title = "Quartiersdisplay Weiterleitung";
+	$content = "Quartiersdisplay Weiterleitung";
+	$parent = 0;
+	$slug = sanitize_title($slug);
+	$check = get_page_by_path($slug);
+	if (!isset($check->ID)) {
+		$page = array(
+			'post_title' => $title,
+			'post_content' => $content,
+			'post_status' => 'publish',
+			'post_type' => 'page',
+			'post_name' => $slug,
+			'post_parent' => $parent,
+			'comment_status' => 'closed'
+		);
+		$page_id = wp_insert_post($page);
+	}
+});
+
+
+// define template for quartiersdisplay page
+add_filter('template_include', function($template) {
+	if (is_page('display')) {
+		$new_template = plugin_dir_path(__FILE__) . 'display-redirect.php';
 		if ('' != $new_template) {
 			return $new_template ;
 		}
@@ -379,5 +413,23 @@ add_action('init', function() {
 
 	endif;
 });
+
+
+/**
+ * Custom Slug counter
+ *
+ * @since Quartiersdisplays 0.3
+ *
+ * @return string
+ */
+function custom_slug_counter($slug, $count = false) {
+	// just display counter
+	if ($count == false) return get_option('csc_'.$slug, 0);
+	// increment counter
+	if (!get_option('csc_'.$slug)) add_option('csc_'.$slug, 1); 
+	else update_option('csc_'.$slug, get_option('csc_'.$slug) + 1);
+	// return counter
+	return get_option('csc_'.$slug);
+} 
 
 ?>
