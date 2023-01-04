@@ -1,5 +1,216 @@
-/* h1 {
-    margin-top: 1000px;
-    color: red;
-    bottom: 1px solid green;
-} */
+
+.qd{
+    max-width: 900px;
+    margin-top: 100px;
+    padding: 0 15px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 200px;
+}
+
+.qd main {
+    text-align: center;   
+    margin: 100px auto -150px auto;
+    padding: 0 15px;
+    max-width: 600px;
+}
+
+
+.qd main h1 {
+    font-size: 3.5rem;
+    letter-spacing: -0.1rem;
+    line-height: 4rem;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.qd .card {
+    margin-bottom: 40px!important;
+}
+
+@media (min-width: 782px) {
+    .qd main h1 {
+        font-size: 6rem;
+        line-height: 6.5rem;
+        margin-bottom: 50px;
+    }
+
+    .qd main {
+        margin-top: 150px;
+        margin-bottom: -300px;
+    };
+}
+
+
+
+.qd main h1 span {
+    color: #0091FF;
+}
+
+
+/* Quartiersdisplays Card + Accordion */
+
+.qp-card-content{
+    padding: 40px 20px;
+    text-align: center;
+}
+
+@media (min-width: 782px) {
+    .qp-card{
+        padding: 40px 100px !important;
+    }
+}
+
+.qp-card-content h2{
+    font-size: 2.7rem;
+}
+
+.qp-card-content p {
+    margin-bottom: 20px;
+}
+
+.accordion-group {
+    width: 100%;
+    border-top: 1px solid #eaeaea;
+}
+
+.accordion-item{
+    text-align: left;
+    width: 100%;
+    cursor: pointer;
+    display: block;
+    border-radius: 18px;
+    padding: 10px;
+}
+
+.accordion-item.open {
+    background: hsl(226, 100%, 99%);
+}
+
+.accordion-trigger {
+    display: flex;
+    align-items: center;
+    color: #003054;
+    width: 100%;
+    font-weight: 700;
+    font-size: 1.5rem;
+}
+
+.accordion-content{
+    padding: 10px;
+    display: none;
+}
+
+.accordion-item.open .accordion-content {
+    display: block;
+}
+
+.accordion-icon {
+    background: hsl(226, 100%, 99%);
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 10px;
+    flex-shrink: none;
+}
+
+.open .accordion-icon {
+    background: #fff;
+}
+
+.accordion-icon svg {
+    width: 20px;
+    height: 20px;
+    fill: #003054;
+}
+
+.accordion-icon .feather-plus {
+    display: block;
+}
+
+.accordion-icon .feather-minus {
+    display: none;
+}
+
+
+.open .accordion-icon .feather-plus {
+    display: none;
+} 
+
+.open .accordion-icon .feather-minus {
+    display: block;
+} 
+
+
+
+@media (min-width: 782px) {
+
+    .accordion-group {
+        padding: 15px;
+    }
+
+    .accordion-content{
+        padding-left: 50px;
+    }
+
+    .accordion-content p{
+        font-size: 1.8rem;
+    }
+    
+    .qp-card{
+        padding: 40px 100px !important;
+    }
+    .accordion-trigger{
+        font-size: 1.8rem;
+    }
+
+    .qd-grid{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-gap: 40px;
+    }
+}
+
+
+
+.qd .card-link {
+    padding: 20px 5px;
+    align-items: center;
+}
+
+.qd .card-emoji{
+    margin: 20px 0px 20px;
+}
+
+.qd .card-quartier{
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 280px;
+    text-align: left;
+    overflow: hidden;
+}
+
+.qd .card-quartier-overlay{
+    background-color: rgba(0, 0, 0, 0.4);
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.qd .card-quartier .card-link {
+    padding: 20px;
+    color: #fff !important;
+    align-items: flex-start;
+
+}
+
+.qd .card-quartier .card-link button{
+    background: transparent;
+    color: #fff;
+}
