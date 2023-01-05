@@ -11,8 +11,10 @@ echo "ID:".$id."<br>";
 if ($id) echo custom_slug_counter('display_'.$id, true);
 
 # redirect to ./quartiersdisplay
-// wp_redirect( home_url()."/quartiersdisplay" ); 
-wp_redirect( home_url()); 
+wp_redirect( home_url()."/quartiersdisplay" ); 
+// wp_redirect( home_url()); 
 exit;
 
 ?>
+
+<span role="img" aria-label="alien" style="font-size: 40px; line-height: 1;" class="react-emojis">👽</span>
