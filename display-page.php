@@ -18,7 +18,7 @@
         <div class="card qp-card">
             <div class="qp-card-content">
                 <h2 class="heading-1">Unsichtbares sichtbar machen</h2>
-                <p>Wir machen das Quartiersgeschehen für Dich sichtbar und geben lokalen Akteruen ihre Bühne.</p>                    
+                <p>Wir machen das Quartiersgeschehen für Dich sichtbar und geben lokalen Akteuren ihre Bühne.</p>                    
 
                 <button class="is-primary">
                     Projekt entdecken 
@@ -65,7 +65,7 @@
                         <span>Wie kann ich Quartiersdisplays nutzen?</span>
                     </div>
                     <div class="accordion-content">
-                        <p>Um Quartiersdisplays nutzen zu können, musst du dich zuerst registrieren. Du kannst dann deine Veranstaltungen, Projekte und Nachrichten veröffentlichen.</p>
+                        <p>Um Quartiersdisplays nutzen zu können, musst du dich zuerst registrieren. Dann ein Projekt erstellen. Jetzt kannst du deine Veranstaltungen, Projekte und Nachrichten veröffentlichen.</p>
                     </div>
                 </div>
             </div>
