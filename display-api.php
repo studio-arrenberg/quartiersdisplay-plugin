@@ -222,10 +222,22 @@ function getPollData($id) {
     return $formatted;
 }
 
+
+
 # Combine posts and additional_post
 $all_content = array_merge($content, $additional_post);
 # Randomly distribute posts in array
 shuffle($all_content);
+
+# filter and remove all objects in $all_content with id dublicate
+$all_content = array_filter($all_content, function($item) {
+    static $ids = array();
+    if (in_array($item['id'], $ids)) {
+        return false;
+    }
+    $ids[] = $item['id'];
+    return true;
+});
 
 
 # Return posts
