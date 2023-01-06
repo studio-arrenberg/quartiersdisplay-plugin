@@ -112,7 +112,7 @@ $additional_post[] = array(
     'subtitle' => $energie_wetter['current']['color'],
     'content' => $energie_wetter['current'],
     'type' => 'energie_wetter',
-    'text' => 'Ab '.$energie_wetter_object['time'].' Uhr ist '.$energie_wetter_object['label']['plural'].' Phase',
+    'text' => 'Ab '.$energie_wetter_object['time'].' Uhr ist die '.$energie_wetter_object['label']['plural'].' Phase',
 );
 # Get Image from settings quartiersdisplays_office_image
 $image_office = get_field('quartiersdisplays_office_image', 'option');
