@@ -101,24 +101,18 @@ $additional_post = array();
 # Get data from http://api.energiewetter.de/
 $energie_wetter = file_get_contents('http://api.energiewetter.de/');
 $energie_wetter = json_decode($energie_wetter, true);
-# get the next phase from forecast which is not the current phase
-$next_phase_text = null;
-# iterate through forecast
-foreach ($energie_wetter['forecast'] as $key => $item) {
-    if ($item['color'] != $energie_wetter['current']['color'] && $next_phase == null) {
-        $next_phase_text = "Ab ".date('H:i', strtotime($key))." Uhr ist ".$item['label']['plural']." Phase";
-        $next_phase_object = $item;
-    }
-}
+# # get the next phase from forecast which is not the current phase
+$energie_wetter_object = array_shift(array_filter($energie_wetter['forecast'], function($item) use ($energie_wetter) {
+    return $item['color'] != $energie_wetter['current']['color'];
+}));
 # write to array
 $additional_post[] = array(
     'id' => 'energie_wetter',
-    'title' => 'Energie Wetter für Wuppertal',
+    'title' => 'Energiewetter für Wuppertal',
     'subtitle' => $energie_wetter['current']['color'],
     'content' => $energie_wetter['current'],
     'type' => 'energie_wetter',
-    'text' => $next_phase_text,
-
+    'text' => 'Ab '.$energie_wetter_object['time'].' Uhr ist '.$energie_wetter_object['label']['plural'].' Phase',
 );
 # Get Image from settings quartiersdisplays_office_image
 $image_office = get_field('quartiersdisplays_office_image', 'option');
