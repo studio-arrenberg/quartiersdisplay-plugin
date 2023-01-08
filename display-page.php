@@ -20,10 +20,10 @@
                 <h2 class="heading-1">Unsichtbares sichtbar machen</h2>
                 <p>Wir machen das Quartiersgeschehen für Dich sichtbar und geben lokalen Akteuren ihre Bühne.</p>                    
 
-                <button class="is-primary">
+                <a href="https://arrenberg.app/projekte/digitale-strassenschilder-am-arrenberg/" class="button is-primary">
                     Projekt entdecken 
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-                </button>
+                </a>
             </div>
 
             <div class="accordion-group">
@@ -52,6 +52,7 @@
                     </div>
                     <div class="accordion-content">
                         <p>Wir haben bisher vier Quartiersdisplays an öffentlichen Plätzen auf dem Arrenberg verteilt.</p>
+                        <img src="<?php echo plugins_url( 'includes/assets/images/Standorte.png', __FILE__ ); ?>" alt="Quartiersdisplays" />
                     </div>
                 </div>
 
@@ -86,17 +87,17 @@
         <div class="qd-grid">
             <div class="card ">
                 <a class="card-link" href="<?php echo get_site_url(); ?>/projektverzeichnis ">
-                    <h3 class="heading-size-2">Quartiersprojekte</h3>
+                    <h3>Quartiersprojekte</h3>
                     <div class="card-emoji">🎨</div>
-                    <button>Projekte entdecken</button>
+                    <button>Entdecken</button>
                 </a>
             </div>
 
             <div class="card">
                 <a class="card-link" href="<?php echo get_site_url(); ?>/veranstaltungen ">
-                    <h3 class="heading-size-2">Veranstaltungen</h3>
+                    <h3>Veranstaltungen</h3>
                     <div class="card-emoji">🗓</div>
-                    <button>Quartierskalender ansehen</button>
+                    <button>Entdecken</button>
                 </a>
             </div>
         </div>
@@ -119,6 +120,8 @@
                 <button>Quartier kennenlernen</button>
             </a>
         </div>
+
+
         
         <?php
         //    # Shortcut
@@ -137,6 +140,25 @@
 
 
 
+
+        <div class="projektpartner">
+            <h2>Vielen Dank an unsere Projektpartner</h2>
+            <div class="projektpartner-logos">
+                <a class="projektpartner-logo" href="https://www.proviel.de/">
+                    <img src="<?php echo plugins_url( 'includes/assets/logos/proviel.svg', __FILE__ ); ?>" alt="Proviel" />
+                </a>
+                <a class="projektpartner-logo" href="http://internationaler-bund.de">
+                    <img src="<?php echo plugins_url( 'includes/assets/logos/ib.svg', __FILE__ ); ?>" alt="Proviel" />
+                </a>
+                <a class="projektpartner-logo" href="https://behindertnaund.de">
+                    <img src="<?php echo plugins_url( 'includes/assets/logos/bnu.svg', __FILE__ ); ?>" alt="Proviel" />
+                </a>
+                <a class="projektpartner-logo" href="https://arrenberg.app/aufbruch-am-arrenberg/">
+                    <img src="<?php echo plugins_url( 'includes/assets/logos/aaa.svg', __FILE__ ); ?>" alt="Proviel" />
+                </a>
+
+            </div>
+        </div>
 
     </section>
 </div>
