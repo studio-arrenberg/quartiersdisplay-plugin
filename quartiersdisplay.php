@@ -1,14 +1,14 @@
 <?php
 /**
  * @package Quartiersdisplays
- * @version 0.0.5
+ * @version 0.0.6
  */
 /*
 Plugin Name: Quartiersdisplays
 Plugin URI: https://github.com/studio-arrenberg/quartiersplattform
 Description: Dieses Plugin stellt die Schnittstelle zu den Quartiersdisplays.
 Author: studio arrenberg
-Version: 0.0.5
+Version: 0.0.6
 Author URI: https://arrenberg.studio
 */
 
