@@ -2,7 +2,7 @@
 
 # Set Header
 header('Content-Type: application/json; charset=utf-8');
-header('Access-Control-Allow-Origin: http://localhost:3000'); // for local development
+header('Access-Control-Allow-Origin: *'); // open for all
 
 # Define
 # Amount of posts to display
