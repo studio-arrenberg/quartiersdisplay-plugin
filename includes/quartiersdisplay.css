@@ -85,6 +85,7 @@
 
 .accordion-item.open {
     background: hsl(226, 100%, 99%);
+    margin-bottom: 10px;
 }
 
 .accordion-trigger {
@@ -100,6 +101,15 @@
     padding: 10px;
     display: none;
 }
+
+.accordion-content img{
+    width: calc(100% + 20px);
+    max-width: 560px;
+    height: auto;
+    margin: 10px -10px;
+    border-radius: 14px;
+}
+
 
 .accordion-item.open .accordion-content {
     display: block;
@@ -146,6 +156,7 @@
 
 
 
+
 @media (min-width: 782px) {
 
     .accordion-group {
@@ -166,6 +177,26 @@
     .accordion-trigger{
         font-size: 1.8rem;
     }
+}
+
+
+
+.qd-grid{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 8px;
+}
+
+.qd .qd-grid h3{
+    font-size: 1.8rem;
+}
+
+
+
+@media (min-width: 782px) {
+    .qd .qd-grid h3{
+        font-size: 2.2rem;
+    }
 
     .qd-grid{
         display: grid;
@@ -173,6 +204,9 @@
         grid-gap: 40px;
     }
 }
+
+
+
 
 
 
@@ -184,6 +218,11 @@
 .qd .card-emoji{
     margin: 20px 0px 20px;
 }
+
+
+
+
+
 
 .qd .card-quartier{
     background-position: center;
@@ -213,4 +252,33 @@
 .qd .card-quartier .card-link button{
     background: transparent;
     color: #fff;
+}
+
+.qd .projektpartner {
+    text-align: center;
+    margin: 80px 0px 0px 0px;
+}
+
+.qd .projektpartner-logos {
+    margin-top: 40px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 8px;
+}
+
+.qd .projektpartner-logo  {
+    width: 100%;
+    background: #fff;
+    border-radius: 16px;
+}
+
+.qd .projektpartner-logos img {
+    margin: 0px;
+    width: 100%;
+}
+
+@media (min-width: 782px) {
+    .qd .projektpartner-logos {
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
 }
