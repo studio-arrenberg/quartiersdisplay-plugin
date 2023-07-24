@@ -5,10 +5,10 @@
  */
 /*
 Plugin Name: Quartiersdisplays
-Plugin URI: https://github.com/studio-arrenberg/quartiersplattform
+Plugin URI: https://github.com/studio-arrenberg/quartiersdisplay-plugin
 Description: Dieses Plugin stellt die Schnittstelle zu den Quartiersdisplays.
 Author: studio arrenberg
-Version: 0.0.6
+Version: 0.0.7
 Author URI: https://arrenberg.studio
 */
 
