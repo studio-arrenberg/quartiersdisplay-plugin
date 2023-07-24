@@ -42,6 +42,7 @@ $args1 = array(
     ),
     'posts_per_page' => $NUM_POSTS * 0.5,
 );
+
 # Query 10 nachrichten chronologically
 $args2 = array(
     'orderby' => 'date',
@@ -51,9 +52,10 @@ $args2 = array(
     'suppress_filters' => true,
     'posts_per_page' => $NUM_POSTS * 0.5,
     'date_query' => array(
-        'after' => date('Y-m-d', strtotime('-2 months')) 
+        'after' => date('Y-m-d', strtotime('-1 months')) 
     ),
 );
+
 # Query 10 umfragen chronologically not older than 1 week
 $args3 = array(
     'orderby' => 'date',
@@ -66,6 +68,7 @@ $args3 = array(
     ),
     'posts_per_page' => $NUM_POSTS,
 );
+
 # Query random projekte
 $args4 = array(
     'orderby' => 'rand',
@@ -74,6 +77,7 @@ $args4 = array(
     'suppress_filters' => true,
     'posts_per_page' => $NUM_POSTS > 2 ? $NUM_POSTS : 2,    
 );
+
 # Get latest projekte
 $args5 = array(
     'orderby' => 'date',
@@ -83,6 +87,7 @@ $args5 = array(
     'suppress_filters' => true,
     'posts_per_page' => 1,
 );
+
 # check if $args5 is already in $args4
 if (in_array($args5, $args4)) {
     $args5 = array();
@@ -105,23 +110,28 @@ $energie_wetter = json_decode($energie_wetter, true);
 $energie_wetter_object = array_shift(array_filter($energie_wetter['forecast'], function($item) use ($energie_wetter) {
     return $item['color'] != $energie_wetter['current']['color'];
 }));
-# write to array
-$additional_post[] = array(
-    'id' => 'energie_wetter',
-    'title' => 'Energiewetter für Wuppertal',
-    'subtitle' => $energie_wetter['current']['color'],
-    'content' => $energie_wetter['current'],
-    'type' => 'energie_wetter',
-    'text' => 'Ab '.$energie_wetter_object['time'].' Uhr ist die '.$energie_wetter_object['label']['plural'].' Phase',
-);
+
+
+# write Energie Ampel to array
+if ($energie_wetter['current']) {
+    $additional_post[] = array(
+        'id' => 'energie_wetter',
+        'title' => 'Energiewetter für Wuppertal',
+        'subtitle' => $energie_wetter['current']['color'],
+        'content' => $energie_wetter['current'],
+        'type' => 'energie_wetter',
+        'text' => 'Ab '.$energie_wetter_object['time'].' Uhr ist die '.$energie_wetter_object['label']['plural'].' Phase',
+    );
+}
+
 # Get Image from settings quartiersdisplays_office_image
 $image_office = get_field('quartiersdisplays_office_image', 'option');
 if (empty( $image_office )) {
     $image_office = get_template_directory_uri()."/assets/images/quartier.png";
-}
-else {
+} else {
     $image_office = $image_office['url'];
 }
+
 # Promote Quartiersplattform with Name and Link
 $link = home_url();
 $link = str_replace('https://', '', $link);
@@ -134,6 +144,7 @@ $additional_post[] = array(
     'link' => $link,
     'type' => 'info',
 );
+
 # Promote Aufbruch am Arrenberg
 get_field('quartiersdisplays_office', 'option', false) && 
 $additional_post[] = array(
@@ -179,16 +190,6 @@ foreach ($posts as $post) {
 
         // umfragen
         'poll' => getPollData($post->ID),
-
-        // meta field
-        // 'meta' => get_post_meta($post->ID) 
-
-        // get taxonomies
-        // 'taxonomies' => get_the_terms($post->ID, 'projekt')[0],
-
-        // term list
-        // 'term_list' => wp_get_post_terms( $post->ID, 'projekt', array( 'fields' => 'all' ) ),
-
     );
 }
 
