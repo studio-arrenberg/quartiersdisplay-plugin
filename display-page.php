@@ -1,7 +1,6 @@
 
 <?php get_header(); ?>
 
-
 <div id="qd-landingpage" class="qd" role="main">
 
     <main>
@@ -9,10 +8,8 @@
             Dein Viertel hat jetzt<br />
             <span class="">Quartiersdisplays</span>
         </h1>
-
         <img src="<?php echo plugins_url( 'includes/assets/images/quartiersdisplay-illustration.png', __FILE__ ); ?>" alt="Quartiersdisplays" />
     </main>
-
 
     <section>
         <div class="card qp-card">
@@ -112,7 +109,6 @@
             }
         ?>
 
-        
         <div class="card card-quartier " href="<?php echo get_site_url(); ?>/veranstaltungen" style="background: url('<?php echo esc_url($image); ?>')">
             <div class="card-quartier-overlay"></div>
             <a class="card-link " href="<?php echo get_site_url(); ?>">
@@ -120,26 +116,11 @@
                 <button>Quartier kennenlernen</button>
             </a>
         </div>
-
-
         
         <?php
-        //    # Shortcut
-        //     $easy_query = array(
-        //         'post_type'=> array('veranstaltungen', 'nachrichten', 'projekte', 'umfragen'), 
-        //         'post_status'=>'publish', 
-        //         'posts_per_page'=> 20,
-        //         'orderby' => 'date'
-        //     );
-        //     # Display Easy
-        //     card_list($easy_query);  // Using QP Card List Funktion
-
             $text = __('Teile uns dein Feedback mit. Wir arbeiten kontinuierlich an den Displays und wollen sie für Dich perfekt machen.','quartiersplattform');
             reminder_card('', __('Feedback zu den Quartiersdisplays','quartiersplattform'), $text, __('Zur Wunschliste','quartiersplattform'), home_url().'/feedback' );
         ?>
-
-
-
 
         <div class="projektpartner">
             <h2>Vielen Dank an unsere Projektpartner</h2>
@@ -159,15 +140,7 @@
 
             </div>
         </div>
-
     </section>
 </div>
 
-    <?php
-
-
- 
-
-    get_footer();
-
-    ?>
+<?php get_footer(); ?>

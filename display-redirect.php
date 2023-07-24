@@ -1,6 +1,5 @@
 <?php
 
-
 # get url parameter id
 $id = $_GET['id'];
 
@@ -12,7 +11,6 @@ if ($id) echo custom_slug_counter('display_'.$id, true);
 
 # redirect to ./quartiersdisplay
 wp_redirect( home_url()."/quartiersdisplay" ); 
-// wp_redirect( home_url()); 
 exit;
 
 ?>

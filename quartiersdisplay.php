@@ -1,7 +1,7 @@
 <?php
 /**
  * @package Quartiersdisplays
- * @version 0.0.6
+ * @version 0.0.7
  */
 /*
 Plugin Name: Quartiersdisplays
