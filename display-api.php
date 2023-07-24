@@ -113,7 +113,7 @@ $energie_wetter_object = array_shift(array_filter($energie_wetter['forecast'], f
 
 
 # write Energie Ampel to array
-if ($energie_wetter['current']) {
+if ($energie_wetter['current']['color'] !== null) {
     $additional_post[] = array(
         'id' => 'energie_wetter',
         'title' => 'Energiewetter für Wuppertal',
