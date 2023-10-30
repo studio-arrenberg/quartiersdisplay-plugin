@@ -106,10 +106,10 @@ $additional_post = array();
 # Get data from http://api.energiewetter.de/
 $energie_wetter = file_get_contents('http://api.energiewetter.de/');
 $energie_wetter = json_decode($energie_wetter, true);
-# # get the next phase from forecast which is not the current phase
-<!-- $energie_wetter_object = array_shift(array_filter($energie_wetter['forecast'], function($item) use ($energie_wetter) {
-    return $item['color'] != $energie_wetter['current']['color'];
-})); -->
+# get the next phase from forecast which is not the current phase
+// $energie_wetter_object = array_shift(array_filter($energie_wetter['forecast'], function($item) use ($energie_wetter) {
+//     return $item['color'] != $energie_wetter['current']['color'];
+// })); 
 
 
 # write Energie Ampel to array
